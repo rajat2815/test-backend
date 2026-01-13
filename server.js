@@ -9,7 +9,7 @@ app.use(express.json());
 
 // Health check endpoint
 app.get("/", (req, res) => {
-  res.send("Server is running 🚀");
+  res.send("Server is running 🚀 - updated from feature branch");
 });
 
 // Example users endpoint
