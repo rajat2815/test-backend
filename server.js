@@ -13,12 +13,7 @@ app.get("/", (req, res) => {
 });
 
 // Example users endpoint
-app.get("/users", (req, res) => {
-  res.json([
-    { id: 1, name: "Alice" },
-    { id: 2, name: "Bob" }
-  ]);
-});
+
 
 // Add user endpoint
 app.post("/users", (req, res) => {
