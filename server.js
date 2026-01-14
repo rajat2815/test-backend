@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -7,24 +8,37 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Health check endpoint
+// Health / Hello endpoint
 app.get("/", (req, res) => {
-  res.send("Server is running 🚀 - updated from feature branch");
+  res.status(200).json({
+    message: "Hello World",
+    success: true,
+  });
 });
 
-// Example users endpoint
-
-
-// Add user endpoint
+// Create user endpoint
 app.post("/users", (req, res) => {
   const { name } = req.body;
-  if (!name) return res.status(400).json({ message: "Name is required" });
 
-  const newUser = { id: Math.floor(Math.random() * 1000), name };
-  res.status(201).json(newUser);
+  if (!name) {
+    return res.status(400).json({
+      success: false,
+      message: "Name is required",
+    });
+  }
+
+  const newUser = {
+    id: Math.floor(Math.random() * 10000),
+    name,
+  };
+
+  res.status(201).json({
+    success: true,
+    user: newUser,
+  });
 });
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });
